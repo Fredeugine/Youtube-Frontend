@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useEffect, useRef, useState} from "react"
+import {useRef, useState} from "react"
 
 
 // @ts-ignore
@@ -15,8 +15,8 @@ const inputRef1  = useRef<HTMLInputElement | any>()
             inputRef1.current?.value.includes('https://youtu.be/') ||
             inputRef1.current?.value.includes('https://www.youtube.com/')
         ) {
+
             setcheckpass(false);
-            wrongUrl.style.opacity = '1' // Show the message
         }
         else{
             setcheckpass(true)
@@ -29,43 +29,48 @@ const inputRef1  = useRef<HTMLInputElement | any>()
             wrongUrl.style.opacity = '0' // Hide the message
         }
 
-
-
     }
 
     return(
         <>
-            <input ref ={inputRef1} onChange={()=>{
-                CheckwrongURLS()
-            }} type={'text'} placeholder={'Paste your url here'}/>
-            <button onClick={()=>{
-                CheckwrongURLS()
+            <div className={'inputSec'}>
+                <input className={'urlInput'} ref ={inputRef1} onChange={()=>{
+                    CheckwrongURLS()
+                }} type={'text'} placeholder={'Paste your url here'}/>
+                <button className={'submitBtn'} onClick={()=>{
+                    CheckwrongURLS()
+                    let inputVal = inputRef1?.current?.value
 
 
-                async function SendVidID(): Promise<void>{
-                    // Split the URL to extract the video ID
+                    async function SendVidID(): Promise<void>{
+                        // check if input Value contains {&t=}, remove it if it does before extracting the id
+                        const index = inputVal?.indexOf('&t=');
+                        if (index !== -1) {
+                             inputVal = inputVal.substring(0, index);
+                        }
+                            // Split the URL to extract the video ID
+                        var videoID: string[] = inputVal?.split('youtu.be/')
 
-                    var videoID: string[] = inputRef1?.current?.value.split('youtu.be/')
-
-                    if (videoID.length === 1){
-                        videoID = inputRef1?.current?.value.split('watch?v=')
-                    }
-                    var id: string = videoID[1]
-                    await fetch('http://localhost:3002/api/items',{
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            name: id,
+                        if (videoID.length === 1){
+                            videoID = inputVal.split('watch?v=')
+                        }
+                        var id: string = videoID[1]
+                        await fetch('http://localhost:8000/history',{
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                url: id,
+                            })
                         })
-                    })
-                    setvidID(id)
-                    console.log(id)
-                }
-                SendVidID()
-            }} disabled={checkpass} type={'submit'}>Submit</button>
-            <p className={'wrongUrl'}>URL contains a spacebar or is empty</p>
+                        await setvidID(id)
+                    }
+                    SendVidID()
+                }} disabled={checkpass} type={'submit'}>Submit</button>
+                <p className={'wrongUrl'}>URL contains a spacebar or is empty</p>
+            </div>
+
         </>
     )
 }

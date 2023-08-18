@@ -2,3 +2,90 @@
   opacity: 0;
   color: red;
 }
+body{
+
+
+}
+.historySec{
+  max-height: 500px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  scrollbar-width: thin; /* Specify the width of the scrollbar */
+}
+
+
+.main{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 90px;
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(90deg, rgba(233, 9, 14, 0.9) 0%, rgba(252, 255, 103, 0.8) 51%) !important;
+}
+.h3{
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
+
+}
+.sec1{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 15.5%;
+
+}
+.inputSec{
+  display: flex;
+  max-width: 500px;
+  justify-content: space-between;
+  align-self: center;
+  align-items: center;
+  gap: 10px;
+
+}
+input{
+  width: 300px;
+  border: 2px solid #8585f5;
+  border-radius: 6px;
+  height: 50px;
+}
+.submitBtn{
+ width: 100px;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgba(255, 126, 57, 0.85);
+  border-radius: 6px;
+  border: 1px solid rgba(116, 198, 255, 0.59);
+  background-color: #ffffff;
+  transition: opacity 100ms linear, background-color 200ms ease-in-out, transform 100ms linear;
+}
+
+.submitBtn:hover,.bookmarkBtn:hover{
+  opacity: 0.8;
+  background-color: #e9fce9;
+  cursor: pointer;
+  color: #522626;
+  transform:  scale(102%);
+}
+.bookmarkBtn{
+  width: 100px;
+  position: absolute;
+  right: 0;
+  margin-top: 50px;
+  border-radius: 16px;
+  border: 1px solid black;
+  transition: opacity 100ms linear, background-color 200ms ease-in-out, transform 100ms linear;
+
+}
+.bookmarkBtn:hover{
+  background-color: aliceblue;
+}
+
+.sec2{
+  display: flex;
+  gap: 30px;
+}
