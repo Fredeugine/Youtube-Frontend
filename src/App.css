@@ -63,6 +63,10 @@ input{
   background-color: #ffffff;
   transition: opacity 100ms linear, background-color 200ms ease-in-out, transform 100ms linear;
 }
+.submitBtn:disabled{
+  color: rgba(77, 31, 31, 0.96);
+  border: 3px solid red;
+}
 
 .submitBtn:hover,.bookmarkBtn:hover{
   opacity: 0.8;
@@ -80,6 +84,10 @@ input{
   border: 1px solid black;
   transition: opacity 100ms linear, background-color 200ms ease-in-out, transform 100ms linear;
 
+}
+.bookmarkBtn:disabled{
+  color: rgba(77, 31, 31, 0.96);
+  border: 3px solid red;
 }
 .bookmarkBtn:hover{
   background-color: aliceblue;

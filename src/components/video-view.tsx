@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 type VideoViewProp = {
     vidID: string;
@@ -8,6 +8,9 @@ type VideoViewProp = {
 // @ts-ignore
 export function VideoView({vidID,urlsent,seturlsent}: VideoViewProp) {
     if (vidID === '' || vidID.includes(' ')){
+        seturlsent(true)
+    }
+    else {
         seturlsent(false)
     }
 
