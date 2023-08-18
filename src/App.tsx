@@ -14,8 +14,8 @@ function App() {
     return (
       <div className={'main'}>
           <div className={'sec1'}>
-              <Searchbar setvidID={setvidID}></Searchbar>
-              <VideoView vidID={vidID}></VideoView>
+              <Searchbar seturlsent={seturlsent} setvidID={setvidID}></Searchbar>
+              <VideoView seturlsent={seturlsent}  urlsent={urlsent} vidID={vidID}></VideoView>
           </div>
           <div className={'sec2'}>
               <History vidID={vidID}></History>

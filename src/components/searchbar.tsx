@@ -2,7 +2,7 @@ import {useRef, useState} from "react"
 
 
 // @ts-ignore
-export function Searchbar({setvidID}) {
+export function Searchbar({setvidID,seturlsent}) {
 
 
 const inputRef1  = useRef<HTMLInputElement | any>()
@@ -17,16 +17,20 @@ const inputRef1  = useRef<HTMLInputElement | any>()
         ) {
 
             setcheckpass(false);
+            seturlsent(false)
         }
         else{
             setcheckpass(true)
+            seturlsent(true)
         }
         if (inputRef1.current?.value.includes(' ') || inputRef1.current?.value === ''){
             wrongUrl.style.opacity = '1' // Show the message
             setcheckpass(true)
+            seturlsent(true)
         }
         else {
             wrongUrl.style.opacity = '0' // Hide the message
+            seturlsent(false)
         }
 
     }

@@ -1,15 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 
 type VideoViewProp = {
-    vidID: string
+    vidID: string;
+    urlsent: boolean;
+    seturlsent: React.Dispatch<React.SetStateAction<boolean>>
 }
-export function VideoView({vidID}: VideoViewProp) {
+// @ts-ignore
+export function VideoView({vidID,urlsent,seturlsent}: VideoViewProp) {
+    if (vidID === '' || vidID.includes(' ')){
+        seturlsent(false)
+    }
 
     // Construct the full video source URL for the iframe src
     var src = `https://www.youtube.com/embed/${vidID}`
     return (
         <>
-            <button className={'bookmarkBtn'} onClick={()=>{
+            <button disabled={urlsent} className={'bookmarkBtn'} onClick={()=>{
                 async function SendVidID(): Promise<void>{
 
                     await fetch('http://localhost:8000/bookmarks',{
